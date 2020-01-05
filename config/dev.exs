@@ -13,6 +13,9 @@ config :offliner, OfflinerWeb.Endpoint,
   check_origin: false,
   watchers: []
 
+config :offliner, OfflinerWeb.Plug.Auth,
+  token: "TEST"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

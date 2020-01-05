@@ -11,6 +11,7 @@ defmodule OfflinerWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug OfflinerWeb.Plug.Auth
   end
 
   scope "/", OfflinerWeb do
