@@ -38,8 +38,9 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## Future Work
 - Better handler for calling remote scripts
+- Handle when a Task fails unceremoniously
 - Better handling of job -> task queue / multi threading
   - `safe_` should be it's own param on the API or maybe some jobs just go to multi runner and some jobs go to the single runner
-- Configuration linking job name to command to run
+- Link job name to command to run via configuration
 - Cache clean up process
 - Docker development environment
