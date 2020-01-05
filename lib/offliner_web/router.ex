@@ -19,10 +19,7 @@ defmodule OfflinerWeb.Router do
     get "/job", JobController, :check
     get "/job/ids", JobController, :ids
     get "/job/all", JobController, :list
-    
     post "/job", JobController, :create
-    post "/job/m", JobController, :mcreate
-    post "/job/s", JobController, :screate
   end
 
 

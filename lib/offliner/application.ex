@@ -7,7 +7,7 @@ defmodule Offliner.Application do
     children = [
       OfflinerWeb.Endpoint,
       Offliner.Cache,
-      Offliner.SingleRunner,
+      Offliner.Runner.Single,
       {Task.Supervisor, name: Offliner.RunnerSupervisor}
     ]
 

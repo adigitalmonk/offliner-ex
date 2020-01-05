@@ -1,12 +1,12 @@
 defmodule OfflinerWeb.JobController do
     use OfflinerWeb, :controller
-  
+
     alias Offliner.Cache
     alias Offliner.Spawner
 
     def check(conn, %{"id" => id}) do
         json(conn, %{
-            data: Cache.result(id)
+            result: Cache.result(id)
         })
     end
 
@@ -22,22 +22,15 @@ defmodule OfflinerWeb.JobController do
         })
     end
 
-    def create(conn, %{"job" => job_name}) do
+    def create(conn, %{"name" => job_name}) do
         json(conn, %{
-            id: Spawner.multi_spawn(job_name)
+            id: Spawner.spawn(job_name)
         })
     end
 
-    def mcreate(conn, _params) do
+    def create(conn, _params) do
         json(conn, %{
-            id: Spawner.multi_spawn("test")
-        })
-    end
-
-    def screate(conn, _params) do
-        json(conn, %{
-            id: Spawner.spawn("test")
+            error: "Provide a job name"
         })
     end
   end
-  
