@@ -4,6 +4,6 @@ defmodule Offliner.Runner.Multi do
   alias Offliner.Runner
 
   def execute(job_name, id) do
-      Task.Supervisor.start_child(RunnerSupervisor, Runner, :run, [job_name, id])
+    Task.Supervisor.start_child(RunnerSupervisor, Runner, :run, [job_name, id])
   end
 end

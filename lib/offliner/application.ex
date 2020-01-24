@@ -4,11 +4,15 @@ defmodule Offliner.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec
+
     children = [
       OfflinerWeb.Endpoint,
       Offliner.Cache,
       Offliner.Runner.Single,
-      {Task.Supervisor, name: Offliner.RunnerSupervisor}
+      {Task.Supervisor, name: Offliner.RunnerSupervisor},
+      worker(Offliner.Runner.Stage, []),
+      worker(Offliner.Runner.Stage.Consumer, [], id: 1)
     ]
 
     opts = [strategy: :one_for_one, name: Offliner.Supervisor]

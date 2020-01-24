@@ -22,9 +22,4 @@ defmodule OfflinerWeb.Router do
     post "/job", JobController, :create
   end
 
-
-  # Other scopes may use custom stacks.
-  # scope "/api", OfflinerWeb do
-  #   pipe_through :api
-  # end
 end
