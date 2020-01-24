@@ -1,3 +1,4 @@
+# https://hexdocs.pm/gen_stage/GenStage.html
 defmodule Offliner.Runner.Stage do
   use GenStage
 
