@@ -12,7 +12,8 @@ config :offliner, OfflinerWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "f9lsXdariAhlgQWkGj90wpW6AI4JReaFzzMWM2kFEGvfwsoRrbZjkCVG/YNBixO1",
   render_errors: [view: OfflinerWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Offliner.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Offliner.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [signing_salt: "767toJQoAAc"]
 
 # Configures Elixir's Logger
 config :logger, :console,

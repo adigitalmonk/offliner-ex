@@ -1,6 +1,7 @@
 defmodule Offliner.Runner do
-  alias Offliner.Cache
-  alias Offliner.Runner.{Multi, Single, Stage}
+  alias Offliner.{Cache, TaskState}
+  alias Offliner.Runner.{Multi, Stage}
+  alias Phoenix.PubSub
 
   def execute(<<"safe_", job_name::binary>>, id) do
     Stage.execute(job_name, id)
@@ -20,13 +21,33 @@ defmodule Offliner.Runner do
   end
 
   def run_script(filename, id) do
+    task = TaskState.new(filename, id)
+
+    PubSub.broadcast(
+      Offliner.PubSub,
+      "task_view",
+      {:task_state, task}
+    )
+
+    {exec_us, status} = :timer.tc(__MODULE__, :timed_script, [filename, id])
+
+    PubSub.broadcast(
+      Offliner.PubSub,
+      "task_view",
+      {:task_state, TaskState.done(task, exec_us, status)}
+    )
+  end
+
+  def timed_script(filename, id) do
     # TODO: Hard fails if Rscript not found and doesn't mark as failed
     case System.cmd("Rscript", ["algorithm/" <> filename]) do
       {res, 0} ->
         Cache.set(id, res)
+        res
 
       {_, exit_code} when is_integer(exit_code) when exit_code > 0 ->
         Cache.set(id, "Failure")
+        "Failure"
     end
   end
 end

@@ -1,4 +1,6 @@
 defmodule Offliner.Runner.Single do
+  # Deprecated
+
   use GenServer
   alias Offliner.Runner
   alias Offliner.Cache

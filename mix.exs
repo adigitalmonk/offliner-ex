@@ -39,7 +39,8 @@ defmodule Offliner.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:gen_stage, "~> 0.14"}
+      {:gen_stage, "~> 0.14"},
+      {:phoenix_live_view, "~> 0.6.0"}
     ]
   end
 end

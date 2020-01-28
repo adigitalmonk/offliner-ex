@@ -24,6 +24,7 @@ defmodule OfflinerWeb do
       import Plug.Conn
       import OfflinerWeb.Gettext
       alias OfflinerWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Controller
     end
   end
 
@@ -42,6 +43,7 @@ defmodule OfflinerWeb do
       import OfflinerWeb.ErrorHelpers
       import OfflinerWeb.Gettext
       alias OfflinerWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Helpers
     end
   end
 
@@ -50,6 +52,16 @@ defmodule OfflinerWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
+    end
+  end
+
+  def live_view do
+    quote do
+      use Phoenix.LiveView
+      alias RetroExWeb.Router.Helpers, as: Routes
+      import Phoenix.HTML.Form
+      import Phoenix.HTML.Link
     end
   end
 

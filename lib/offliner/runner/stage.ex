@@ -51,7 +51,6 @@ defmodule Offliner.Runner.Stage.Consumer do
   def handle_events(jobs, _from, state) do
     Enum.each(jobs, fn {job_name, job_id} ->
       Runner.run(job_name, job_id)
-      IO.inspect job_id, label: "Finished"
     end)
     {:noreply, [], state}
   end

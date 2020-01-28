@@ -5,6 +5,7 @@ defmodule OfflinerWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug Phoenix.LiveView.Flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,12 +15,16 @@ defmodule OfflinerWeb.Router do
   end
 
   scope "/", OfflinerWeb do
-    pipe_through :api
-
-    get "/job", JobController, :check
-    get "/job/ids", JobController, :ids
-    get "/job/all", JobController, :list
-    post "/job", JobController, :create
+    pipe_through :browser
+    get "/", ViewController, :index
   end
 
+  scope "/job", OfflinerWeb do
+    pipe_through :api
+
+    get "/", JobController, :check
+    get "/ids", JobController, :ids
+    get "/all", JobController, :list
+    post "/", JobController, :create
+  end
 end
