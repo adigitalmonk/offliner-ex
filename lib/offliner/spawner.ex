@@ -1,9 +1,10 @@
 defmodule Offliner.Spawner do
-  alias Offliner.Runner
+  @moduledoc false
   alias Offliner.Cache
+  alias Offliner.Runner
 
   # https://gist.github.com/danschultzer/99c21ba403fd7f49a26cc40571ff5cce
-  defp gen_reference() do
+  defp gen_reference do
     min = String.to_integer("100000", 36)
     max = String.to_integer("ZZZZZZ", 36)
 

@@ -1,4 +1,5 @@
 defmodule Offliner.TaskState do
+  @moduledoc false
   defstruct [
     :exec_ms,
     :started_at,

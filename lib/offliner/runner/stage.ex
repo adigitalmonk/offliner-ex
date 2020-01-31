@@ -1,8 +1,9 @@
-# https://hexdocs.pm/gen_stage/GenStage.html
 defmodule Offliner.Runner.Stage do
+  @moduledoc false
+
   use GenStage
 
-  def start_link() do
+  def start_link do
     GenStage.start_link(__MODULE__, :ok, name: __MODULE__)
   end
 
@@ -10,7 +11,7 @@ defmodule Offliner.Runner.Stage do
     GenStage.call(__MODULE__, {:exec, job_name, id}, timeout)
   end
 
-  ## Callbacks  
+  ## Callbacks
   def init(:ok) do
     {:producer, {:queue.new(), 0}, dispatcher: GenStage.BroadcastDispatcher}
   end
@@ -36,14 +37,15 @@ defmodule Offliner.Runner.Stage do
 end
 
 defmodule Offliner.Runner.Stage.Consumer do
+  @moduledoc false
   use GenStage
   alias Offliner.Runner
 
-  def start_link() do
+  def start_link do
     GenStage.start_link(__MODULE__, :ok)
   end
 
-  # Callbacks  
+  # Callbacks
   def init(:ok) do
     {:consumer, :ok, subscribe_to: [Offliner.Runner.Stage]}
   end

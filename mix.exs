@@ -40,7 +40,8 @@ defmodule Offliner.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:gen_stage, "~> 0.14"},
-      {:phoenix_live_view, "~> 0.6.0"}
+      {:phoenix_live_view, "~> 0.6.0"},
+      {:credo, "~> 1.2"}
     ]
   end
 end

@@ -1,4 +1,5 @@
 defmodule Offliner.Cache do
+  @moduledoc false
   use Agent
 
   def start_link(_opts) do

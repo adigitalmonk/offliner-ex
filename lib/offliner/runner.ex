@@ -1,4 +1,5 @@
 defmodule Offliner.Runner do
+  @moduledoc false
   alias Offliner.{Cache, TaskState}
   alias Offliner.Runner.{Multi, Stage}
   alias Phoenix.PubSub
@@ -39,7 +40,7 @@ defmodule Offliner.Runner do
   end
 
   def timed_script(filename, id) do
-    # TODO: Hard fails if Rscript not found and doesn't mark as failed
+    # Hard fails if Rscript not found and doesn't mark as failed
     case System.cmd("Rscript", ["algorithm/" <> filename]) do
       {res, 0} ->
         Cache.set(id, res)

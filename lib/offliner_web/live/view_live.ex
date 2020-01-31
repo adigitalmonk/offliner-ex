@@ -1,4 +1,5 @@
 defmodule OfflinerWeb.ViewLive do
+  @moduledoc false
   use OfflinerWeb, :live_view
   alias Phoenix.PubSub
 
@@ -58,20 +59,18 @@ defmodule OfflinerWeb.ViewLive do
     {:noreply, assign(socket, :tasks, tasks)}
   end
 
-  def handle_info(:purge, socket) do
-    IO.inspect("Purge Received")
-    Process.send_after(self(), :purge, 60_000)
-    {:noreply, socket}
-  end
+  # def handle_info(:purge, socket) do
+  #   Process.send_after(self(), :purge, 60_000)
+  #   {:noreply, socket}
+  # end
 
-  def handle_info(msg, socket) do
-    IO.inspect(msg, label: "Received")
+  def handle_info(_msg, socket) do
     {:noreply, socket}
   end
 
   def mount(_params, _session, socket) do
     PubSub.subscribe(Offliner.PubSub, "task_view")
-    Process.send_after(self(), :purge, 10_000)
+    # Process.send_after(self(), :purge, 10_000)
     {:ok, assign(socket, :tasks, %{})}
   end
 end
