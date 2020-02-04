@@ -9,7 +9,6 @@ defmodule Offliner.Application do
     children = [
       OfflinerWeb.Endpoint,
       Offliner.Cache,
-      Offliner.Runner.Single,
       {Task.Supervisor, name: Offliner.RunnerSupervisor},
       worker(Offliner.Runner.Stage, []),
       worker(Offliner.Runner.Stage.Consumer, [], id: 1)
